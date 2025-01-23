@@ -76,6 +76,8 @@ crashlytics-build.properties
 ###############################################
 #                                 Added by Ludo                                      #
 ###############################################
+# JetBrains Rider
+.idea/
 
 # Ignore File, But not ignore folder
 !*.app/
