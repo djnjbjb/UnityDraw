@@ -7,12 +7,12 @@ using UnityEngine.UI;
 namespace UnityDraw
 {
     /// <summary>
-    /// Codes are based on hahahappyboy's ImageDrawProject (https://github.com/hahahappyboy/ImageDrawProject)
-    /// There may be performance issues on:
-    ///     1. call of Texture2d.SetPixels32()
+    /// This class is based on hahahappyboy's ImageDrawProject (https://github.com/hahahappyboy/ImageDrawProject)
+    /// There may be performance risks at:
+    ///     1. Call of Texture2d.SetPixels32()
     ///     2. Function draw_line() and draw_pen() loops a lot
     /// Due to Unity's Profiler, there is no performance issue by now.
-    /// So I don't optimize the potential (but not real) performance issue.
+    /// So I don't optimize the potential (but not real) performance risks.
     /// </summary>
     public class DrawOnImage : MonoBehaviour
     {
@@ -177,8 +177,8 @@ namespace UnityDraw
                 throw new Exception("Image must have no rotation");
 
             /*
-             * Sprite Asset Setting also influence the algorithm. But I don't dive into it.
-             * The algorighm only works for the Sprite Asset Setting by now.
+             * Algorithm should be modified for different Sprite Asset Setting. But I don't dive into Sprite Asset Setting.
+             * The algorighm only works for the specific Sprite Asset Setting now.
              */
 
             Vector2 pos_in_image = image.transform.InverseTransformPoint(position);
@@ -199,10 +199,10 @@ namespace UnityDraw
             int progress_int = Mathf.FloorToInt(progress_float + 0.1f);
             if (progress_int == 0 && filled_count > 0) progress_int = 1;
 
-            //pregress_text
+            // pregress_text
             progress_text.text = $"{progress_int}%";
 
-            //win
+            // win
             if (progress_int >= success_percentage) GameManager.It.Win();
         }
 
