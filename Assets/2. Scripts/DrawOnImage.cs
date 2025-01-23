@@ -13,6 +13,10 @@ namespace UnityDraw
     ///     2. Function draw_line() and draw_pen() loops a lot
     /// Due to Unity's Profiler, there is no performance issue by now.
     /// So I don't optimize the potential (but not real) performance risks.
+    ///
+    /// There is a bug now.
+    /// If it is all filled, filled_count == total_count -1.
+    /// I will check this later.
     /// </summary>
     public class DrawOnImage : MonoBehaviour
     {
@@ -196,8 +200,8 @@ namespace UnityDraw
         void update_progress()
         {
             float progress_float = (float)filled_count / (float)total_count * 100f;
-            int progress_int = Mathf.FloorToInt(progress_float + 0.1f);
-            if (progress_int == 0 && filled_count > 0) progress_int = 1;
+            int progress_int = Mathf.FloorToInt(progress_float + 0.1f);  // +0.1% for better user experience, they will reach 100% at 99.9%
+            if (progress_int == 0 && filled_count > 0) progress_int = 1; // For better user experience. The smallest fill will cause progress to be 1 (not zero).
 
             // pregress_text
             progress_text.text = $"{progress_int}%";
